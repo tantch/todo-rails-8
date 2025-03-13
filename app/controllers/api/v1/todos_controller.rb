@@ -3,7 +3,7 @@ class Api::V1::TodosController < ApplicationController
   before_action :initiate_todo, only: %i[show update destroy]
 
   def index
-    todos = current_user.todos
+    todos = current_user.admin? ? Todo.all : current_user.todos
 
     todos = todos.where(status: params[:status]) if params[:status].present?
     if params[:start_date].present? && params[:end_date].present?
@@ -36,7 +36,7 @@ class Api::V1::TodosController < ApplicationController
   private
 
   def initiate_todo
-    @todo = current_user.todos.find(params[:id])
+    @todo = current_user.admin? ? Todo.find(params[:id]) : current_user.todos.find(params[:id])
   end
 
   def todo_params
