@@ -15,7 +15,7 @@ DEVISE_JWT_SECRET_KEY="secretkey"
 # Overall Arquitecture
 
 The project just follows the standard organization for an API developed in Ruby On Rails.
-This project was created with `rails new` and rails 8 with api only flag. Some boilerplate remains.
+This project was created with `rails new` and rails 8 with api only flag. Some boilerplate remains. (To take note that some git hooks, ci and docker files are the result of this, and would normally bet set up together with the development and deployment processes in the future)
 Database chosen was Postgresql and it's setup is all done through Rails migrations and configs.
  - 2 tables only: user and todo, schema can be checked on schema.rb and its pretty straightforward. A User can have many todos, a todo only belongs to 1 user
 > I chose to use `in_progress` instead `in progress` because it made more sense for me, I did not add anything to make `in progress` valid when using the api
