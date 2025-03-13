@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   rescue_from ActionController::ParameterMissing, with: :render_bad_request_response
 
@@ -12,5 +11,4 @@ class ApplicationController < ActionController::API
   def render_bad_request_response(exception)
     render json: { error: exception.message }, status: :bad_request
   end
-  
 end

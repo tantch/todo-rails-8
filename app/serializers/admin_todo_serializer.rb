@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TodoSerializer
+class AdminTodoSerializer
   def initialize(todo)
     @todo = todo
   end
@@ -11,7 +11,11 @@ class TodoSerializer
       title: @todo.title,
       description: @todo.description,
       status: @todo.status,
-      due_date: @todo.due_date
+      due_date: @todo.due_date,
+      user: {
+        id: @todo.user.id,
+        email: @todo.user.email
+      }
     }
   end
 end

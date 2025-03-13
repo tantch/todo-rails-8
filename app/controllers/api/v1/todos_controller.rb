@@ -7,14 +7,20 @@ module Api
       before_action :initiate_todo, only: %i[show update destroy]
 
       def index
-        todos = current_user.admin? ? Todo.all : current_user.todos
+        todos = current_user.admin? ? Todo.includes(:user).all : current_user.todos
 
         todos = todos.where(status: params[:status]) if params[:status].present?
         if params[:start_date].present? && params[:end_date].present?
           todos = todos.where(due_date: params[:start_date]..params[:end_date])
         end
 
-        render json: todos.map { |todo| TodoSerializer.new(todo).as_json }
+        serialized_todos = if current_user.admin?
+                             todos.map { |todo| AdminTodoSerializer.new(todo).as_json }
+                           else
+                             todos.map { |todo| TodoSerializer.new(todo).as_json }
+                           end
+
+        render json: serialized_todos
       end
 
       def show
