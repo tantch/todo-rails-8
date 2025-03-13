@@ -1,24 +1,8 @@
-# README
+This project was created with `rails new` and rails 8. Soem boilerplate remains, including for tests which weren't removed.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Setup
 
-Things you may want to cover:
+Ruby version 3.4.2
 
-* Ruby version
+run `bundle install` , `rails db:create`, `rails db:migrate`, `rails s` to setup and start the server
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
