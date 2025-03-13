@@ -14,11 +14,11 @@ module Api
           todos = todos.where(due_date: params[:start_date]..params[:end_date])
         end
 
-        render json: todos
+        render json: todos.map { |todo| TodoSerializer.new(todo).as_json }
       end
 
       def show
-        render json: @todo
+        render json: TodoSerializer.new(@todo).as_json
       end
 
       def create

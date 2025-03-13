@@ -84,4 +84,17 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  #lograge config
+
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+
+  config.lograge.custom_options = lambda do |event|
+    {
+      time: event.time.utc,
+      request_id: event.payload[:request_id],
+      user_id: event.payload[:user_id]
+    }
+  end
 end
