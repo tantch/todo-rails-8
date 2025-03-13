@@ -38,6 +38,9 @@ While the code was developed with the challenges in mind, it seemed overkill to 
 
 # API ROUTES
 
+Normally I would use rwag to automatically generate documention for API from the tests.
+Here is a quick rundown of the routes and examples of body for each type of body needed, though it's probably self explanatory
+
 ## User Authentication (Devise):
 
  - POST `/api/v1/users/signup` – Register a new user (regular user only)
@@ -52,4 +55,23 @@ While the code was developed with the challenges in mind, it seemed overkill to 
  - PUT `/api/v1/todos/:id` – Update a todo
  - DELETE `/api/v1/todos/:id` – Delete a todo
 
- 
+### User JSON body example
+```
+{
+  "user": {
+    "email": "user@example.com",
+    "password": "your_password"
+  }
+}
+```
+### Todo JSON body example
+ ```
+ {
+  "todo": {
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread",
+    "status": "in_progress",
+    "due_date": "2025-03-15T00:00:00Z"
+  }
+}
+ ```
